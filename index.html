@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taskio - Home</title>
+    <title>Taskio</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <section class="sec-1">
@@ -16,7 +17,7 @@
                 <p class="taskio">TASKIO</p>
 
                 <div class="group-inline">
-                    <a href="#" class="nav-button">Resumo de Atividades</a>
+                    <a href="#" class="nav-button">Resumo de Tarefas</a>
                     <a href="#" class="nav-button">Tema: Escuro/Claro</a>
                     <a href="#" class="nav-button">Configurações</a>
                 </div>
@@ -26,8 +27,19 @@
 
     <section class="sec-2">
         <div class="container calendar">
-            <div>
-                <p class="title-calendar">JANEIRO</p>
+            <div class="nav-meses-area">
+                <button class="btn-nav-meses" id="back-btn" onclick="backMonth()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide1 lucide-chevron-left-icon lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+
+                <div style="font-weight: 700;">
+                    <p class="month-calendar"></p>
+                    <p class="year-calendar"></p>
+                </div>
+
+                <button class="btn-nav-meses" id="next-btn" onclick="nextMonth()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide2 lucide-chevron-right-icon lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
             </div>
 
             <div class="week-days">
@@ -44,6 +56,48 @@
             </div>
         </div>
     </section>
+
+    <!--Modal principal-->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="group-items-modal">
+                <p class="modal-day"></p>
+
+                <div class="task-area"></div>
+            </div>
+
+            <div class="btn-area">
+                <button id="close-modal" class="close-modal">Fechar</button>
+                
+                <button id="add-task-btn" class="add-task-btn">Adicionar tarefa</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Sub-modal-->
+    <div id="task-modal-overlay" class="task-modal-overlay hidden">
+        <div class="task-modal">
+            <p class="modal-title">Nova tarefa</p>
+
+            <div class="group-items-task-modal">
+                <div class="group-input">
+                    <p class="title-input-new-task">Título:</p>
+                    <input type="text" class="input-new-task" id="new-task-title"/>
+
+                    <p class="title-input-new-task">Descrição:</p>
+                    <input type="text" class="input-new-task" id="new-task-desc"/>
+
+                    <p class="message"></p>
+                </div>
+                
+                <div class="btn-area">
+                    <button id="cancel-task-btn" class="close-modal">Cancelar</button>
+                    
+                    <button id="save-task-btn" class="add-task-btn">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="/js/script.js" defer></script>
 </body>
